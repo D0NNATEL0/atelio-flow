@@ -1,0 +1,202 @@
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 249, 244, 0.88));
+  border-right: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 6px 8px;
+}
+
+.logoImage {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: var(--shadow-soft);
+}
+
+.logoCopy {
+  display: grid;
+  gap: 2px;
+}
+
+.logoTitle {
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.logoMeta {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.datePill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.85rem;
+  margin: 0 4px;
+}
+
+.navGroup {
+  display: grid;
+  gap: 8px;
+}
+
+.navLabel {
+  padding: 0 10px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.navList {
+  display: grid;
+  gap: 6px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(17, 17, 17, 0.05);
+  color: var(--muted);
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease,
+    border-color 160ms ease;
+}
+
+.navLink:hover {
+  background: rgba(242, 140, 40, 0.08);
+  border-color: rgba(242, 140, 40, 0.12);
+  transform: translateX(2px);
+}
+
+.navActive {
+  color: var(--text);
+  background: rgba(242, 140, 40, 0.14);
+  border-color: rgba(242, 140, 40, 0.18);
+}
+
+.token {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(242, 140, 40, 0.12);
+  color: var(--accent-strong);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.label {
+  font-size: 0.94rem;
+  font-weight: 600;
+}
+
+.badge {
+  margin-left: auto;
+  min-width: 20px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.footer {
+  margin-top: auto;
+  display: grid;
+  gap: 12px;
+}
+
+.planCard {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+}
+
+.planMeta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(17, 17, 17, 0.05);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f8a44d 0%, var(--accent) 60%, var(--accent-strong) 100%);
+  color: #2a1608;
+  font-weight: 800;
+}
+
+.userCopy {
+  display: grid;
+  gap: 2px;
+}
+
+.userName {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.userRole {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+@media (max-width: 980px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 220ms ease;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+}

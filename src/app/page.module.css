@@ -1,0 +1,371 @@
+.page {
+  display: grid;
+  gap: 22px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #f8a44d 0%, var(--accent) 55%, #c96f45 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.revenuePanel,
+.section,
+.sectionCompact {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.revenuePanel {
+  display: grid;
+  gap: 20px;
+  padding: 22px;
+}
+
+.revenueHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.revenueLabel,
+.revenueStatLabel {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.revenueTitle {
+  margin-top: 8px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.revenueControls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.monthPicker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.monthButton {
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.monthButtonActive {
+  background: var(--accent-soft);
+  border-color: rgba(242, 140, 40, 0.2);
+  color: var(--accent-strong);
+}
+
+.segmented {
+  display: inline-flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.04);
+}
+
+.segmentButton {
+  min-height: 34px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.segmentButtonActive {
+  background: var(--accent);
+  color: #fff;
+}
+
+.dateInput,
+.compareSelect {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.76);
+  font: inherit;
+  color: inherit;
+  outline: none;
+}
+
+.revenueBody {
+  display: grid;
+  gap: 16px;
+}
+
+.revenueSummaryRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.revenueChart {
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(17, 17, 17, 0.025);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.chartBars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+  gap: 12px;
+  align-items: end;
+  min-height: 260px;
+}
+
+.chartColumn {
+  display: grid;
+  gap: 8px;
+  align-items: end;
+}
+
+.chartTrack {
+  height: 190px;
+  padding: 6px;
+  border-radius: 18px;
+  background: rgba(17, 17, 17, 0.04);
+  display: flex;
+  align-items: end;
+}
+
+.chartBar {
+  width: 100%;
+  min-height: 16px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f8a44d 0%, var(--accent) 55%, #c96f45 100%);
+}
+
+.chartFooter {
+  display: grid;
+  gap: 2px;
+}
+
+.revenueStatCard {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(17, 17, 17, 0.025);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.revenueStatValue {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.revenueStatMeta {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.chartLabel {
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.chartValue {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.accentcoral { color: var(--coral); }
+.accentviolet { color: var(--violet); }
+.accentamber { color: var(--amber); }
+.accentgreen { color: var(--green); }
+.accentcyan { color: var(--cyan); }
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 18px;
+}
+
+.section {
+  padding: 22px;
+}
+
+.sectionCompact {
+  padding: 20px;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.activityList,
+.stack {
+  display: grid;
+  gap: 4px;
+}
+
+.activityItem,
+.clientItem,
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.activityItem:last-child,
+.clientItem:last-child,
+.statRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.activityInfo,
+.clientInfo {
+  min-width: 0;
+  flex: 1;
+}
+
+.activityTitle,
+.clientTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.activityMeta,
+.clientMeta,
+.statLabel {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.activitySide {
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+}
+
+.amount {
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.statRow {
+  justify-content: space-between;
+}
+
+.statValue {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.clientToken {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.clientAccentviolet { background: rgba(143, 106, 216, 0.14); color: var(--violet); }
+.clientAccentcoral { background: rgba(230, 106, 91, 0.14); color: var(--coral); }
+.clientAccentcyan { background: rgba(76, 147, 184, 0.14); color: var(--cyan); }
+.clientAccentgreen { background: rgba(95, 155, 121, 0.14); color: var(--green); }
+.clientAccentamber { background: rgba(217, 154, 59, 0.14); color: var(--amber); }
+.clientAccentpink { background: rgba(188, 122, 146, 0.14); color: var(--pink); }
+
+@media (max-width: 1024px) {
+  .grid,
+  .revenueSummaryRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .revenueHead,
+  .revenueControls {
+    align-items: stretch;
+  }
+
+  .revenueControls {
+    flex-wrap: wrap;
+  }
+}

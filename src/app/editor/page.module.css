@@ -1,0 +1,501 @@
+.page {
+  display: grid;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #f8a44d 0%, var(--accent) 55%, #c96f45 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 480px);
+  gap: 20px;
+  align-items: start;
+}
+
+.leftColumn,
+.rightColumn {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.preview {
+  min-height: 680px;
+  padding: 42px;
+  border-radius: var(--radius-lg);
+  background: var(--editor-page-background, #fff);
+  color: var(--editor-text-color, #1f1b16);
+  box-shadow: var(--shadow-soft);
+}
+
+.docHead,
+.docMeta,
+.docParties,
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.docHead {
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.companyName {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--editor-accent-color, var(--accent-strong));
+}
+
+.muted {
+  color: #7b7269;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--editor-accent-color, var(--accent-strong)) 16%, white);
+  color: var(--editor-accent-color, var(--accent-strong));
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.docNumber {
+  margin-top: 6px;
+  color: #7b7269;
+  font-size: 0.84rem;
+  text-align: right;
+}
+
+.docMeta {
+  margin-bottom: 26px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #faf7f3;
+}
+
+.docMetaItem {
+  flex: 1;
+  padding: 14px 16px;
+  border-right: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.docMetaItem:last-child {
+  border-right: none;
+}
+
+.metaLabel {
+  color: #8b8279;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.metaValue {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.docParties {
+  margin-bottom: 26px;
+}
+
+.party {
+  flex: 1;
+}
+
+.partyLabel {
+  color: #8b8279;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.partyName {
+  margin-top: 6px;
+  font-size: 0.96rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.partyDetail {
+  margin-top: 4px;
+  color: #6f675f;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 22px;
+}
+
+.contractStack {
+  display: grid;
+  gap: 18px;
+}
+
+.contractSection {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--editor-accent-color, var(--accent-strong)) 6%, white);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.contractText {
+  margin-top: 8px;
+  color: #4f483f;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.contractSignatures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.signatureBlock {
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px dashed color-mix(in srgb, var(--editor-accent-color, var(--accent-strong)) 26%, white);
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.signatureName {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.signatureMeta {
+  display: block;
+  margin-top: 8px;
+  color: #7b7269;
+  font-size: 0.82rem;
+}
+
+.table thead tr {
+  background: var(--editor-accent-color, var(--accent));
+}
+
+.table th {
+  padding: 10px 14px;
+  color: #fff;
+  text-align: left;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.totals {
+  width: 260px;
+  margin-left: auto;
+}
+
+.totalRow,
+.totalFinal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.totalRow {
+  padding: 8px 0;
+  color: #625b53;
+  font-size: 0.86rem;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.totalFinal {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--editor-accent-color, var(--accent));
+  color: #fff;
+  font-weight: 800;
+}
+
+.panel {
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.panelTitle {
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.panelNote {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.typeRow,
+.formRow {
+  display: grid;
+  gap: 12px;
+}
+
+.typeRow {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.typeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.typeActive {
+  background: var(--accent-soft);
+  border-color: rgba(242, 140, 40, 0.2);
+  color: var(--accent-strong);
+}
+
+.formRow {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.76);
+  outline: none;
+}
+
+.textarea {
+  min-height: 100px;
+  resize: none;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.textareaCompact {
+  min-height: 84px;
+}
+
+.sectionTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.lineStack {
+  display: grid;
+  gap: 12px;
+}
+
+.lineCard {
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.lineHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.removeButton {
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.lineTotal {
+  margin-top: 4px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--editor-accent-color, var(--accent-strong));
+}
+
+.colorInput {
+  min-height: 48px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(17, 17, 17, 0.06);
+  color: #7b7269;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  flex-direction: column;
+}
+
+.quickLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .leftColumn,
+  .rightColumn {
+    display: contents;
+  }
+
+  .typePanel {
+    order: 1;
+  }
+
+  .infoPanel {
+    order: 2;
+  }
+
+  .identityPanel {
+    order: 3;
+  }
+
+  .prestationsPanel {
+    order: 4;
+  }
+
+  .calculationsPanel {
+    order: 5;
+  }
+
+  .customizationPanel {
+    order: 6;
+  }
+
+  .actionsPanel {
+    order: 7;
+  }
+
+  .previewPanel {
+    order: 8;
+  }
+}
+
+@media (max-width: 768px) {
+  .preview {
+    padding: 24px;
+  }
+
+  .docMeta,
+  .docParties,
+  .formRow,
+  .typeRow {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .contractSignatures {
+    grid-template-columns: 1fr;
+  }
+
+  .quickLinks {
+    flex-direction: column;
+  }
+}

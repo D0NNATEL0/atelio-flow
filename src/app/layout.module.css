@@ -1,0 +1,42 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding: 24px 28px 40px;
+}
+
+.overlay {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .main {
+    margin-left: 0;
+    padding-bottom: 74px;
+  }
+
+  .content {
+    padding: 16px 16px 28px;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    background: rgba(17, 17, 17, 0.35);
+  }
+
+  .overlayVisible {
+    display: block;
+  }
+}
