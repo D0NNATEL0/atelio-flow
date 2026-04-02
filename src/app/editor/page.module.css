@@ -667,6 +667,26 @@
   flex-direction: column;
 }
 
+.successFeedback,
+.errorFeedback {
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.successFeedback {
+  background: rgba(95, 155, 121, 0.12);
+  border: 1px solid rgba(95, 155, 121, 0.2);
+  color: #3f7055;
+}
+
+.errorFeedback {
+  background: rgba(230, 106, 91, 0.12);
+  border: 1px solid rgba(230, 106, 91, 0.2);
+  color: #a54c3f;
+}
+
 .wizardPanel {
   display: grid;
   gap: 18px;

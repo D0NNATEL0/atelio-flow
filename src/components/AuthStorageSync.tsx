@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { isSupabaseConfigured } from "@/lib/env";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import { clearCurrentUserScope, saveCurrentUserScope } from "@/lib/user-scope";
 
-export function AuthStorageSync() {
+export function AuthStorageSync({ children }: { children: ReactNode }) {
+  const [isReady, setIsReady] = useState(!isSupabaseConfigured);
+
   useEffect(() => {
     if (!isSupabaseConfigured) return;
 
@@ -14,10 +16,16 @@ export function AuthStorageSync() {
 
     async function syncCurrentUser() {
       const { data, error } = await supabase.auth.getUser();
-      if (cancelled || error) return;
+      if (cancelled) return;
+
+      if (error) {
+        setIsReady(true);
+        return;
+      }
 
       if (!data.user) {
         clearCurrentUserScope();
+        setIsReady(true);
         return;
       }
 
@@ -26,6 +34,7 @@ export function AuthStorageSync() {
         email: data.user.email ?? "",
         fullName: (data.user.user_metadata?.full_name as string | undefined) ?? ""
       });
+      setIsReady(true);
     }
 
     void syncCurrentUser();
@@ -51,5 +60,9 @@ export function AuthStorageSync() {
     };
   }, []);
 
-  return null;
+  if (!isReady) {
+    return null;
+  }
+
+  return <>{children}</>;
 }

@@ -15,8 +15,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <AuthStorageSync />
-        {children}
+        <AuthStorageSync>{children}</AuthStorageSync>
       </body>
     </html>
   );

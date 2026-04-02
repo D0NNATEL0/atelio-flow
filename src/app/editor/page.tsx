@@ -2,6 +2,7 @@
 
 import type { CSSProperties, FormEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import { canCreateDocument, canUseLockedDocumentTypes, defaultAccount, loadAccount, type StoredAccount } from "@/lib/account-store";
 import { downloadElementAsPdf } from "@/lib/pdf-export";
@@ -110,6 +111,7 @@ function autoResizeTextarea(event: FormEvent<HTMLTextAreaElement>) {
 }
 
 export default function EditorPage() {
+  const router = useRouter();
   const previewRef = useRef<HTMLElement | null>(null);
   const [account, setAccount] = useState<StoredAccount>(defaultAccount());
   const [docType, setDocType] = useState<DocumentType>("facture");
@@ -150,6 +152,7 @@ export default function EditorPage() {
   const [upgradeModal, setUpgradeModal] = useState<{ title: string; text: string } | null>(null);
   const [isEditingExistingDocument, setIsEditingExistingDocument] = useState(false);
   const [hasManualNumberEdit, setHasManualNumberEdit] = useState(false);
+  const [actionFeedback, setActionFeedback] = useState<{ type: "error" | "success"; text: string } | null>(null);
 
   const clientDirectory = useMemo(
     () =>
@@ -301,12 +304,26 @@ export default function EditorPage() {
   }
 
   function handleDownloadPdf() {
+    setActionFeedback(null);
     const saved = persistDocument("Brouillon");
-    if (!saved) return;
-    if (!previewRef.current) {
+    if (!saved) {
+      setActionFeedback({ type: "error", text: "Impossible d’enregistrer le document avant téléchargement." });
       return;
     }
-    void downloadElementAsPdf(previewRef.current, `${saved}.pdf`);
+    if (!previewRef.current) {
+      setActionFeedback({ type: "error", text: "Aperçu introuvable pour générer le PDF." });
+      return;
+    }
+    void downloadElementAsPdf(previewRef.current, `${saved}.pdf`)
+      .then(() => {
+        setActionFeedback({ type: "success", text: "Téléchargement du PDF lancé." });
+      })
+      .catch((error) => {
+        setActionFeedback({
+          type: "error",
+          text: error instanceof Error ? error.message : "Le téléchargement du PDF a échoué."
+        });
+      });
   }
 
   function handleSelectClient(nextClient: string) {
@@ -1078,9 +1095,13 @@ export default function EditorPage() {
                     <button
                       className="button button-secondary"
                       onClick={() => {
+                        setActionFeedback(null);
                         const savedId = persistDocument("Brouillon");
                         if (savedId) {
-                          window.location.href = `/documents?doc=${encodeURIComponent(savedId)}`;
+                          setActionFeedback({ type: "success", text: "Brouillon enregistré. Redirection en cours..." });
+                          router.push(`/documents?doc=${encodeURIComponent(savedId)}`);
+                        } else {
+                          setActionFeedback({ type: "error", text: "Impossible d’enregistrer ce brouillon pour le moment." });
                         }
                       }}
                       type="button"
@@ -1089,6 +1110,11 @@ export default function EditorPage() {
                     </button>
                     <button className="button button-primary" onClick={handleDownloadPdf} type="button">Télécharger PDF</button>
                   </div>
+                  {actionFeedback ? (
+                    <div className={actionFeedback.type === "error" ? styles.errorFeedback : styles.successFeedback}>
+                      {actionFeedback.text}
+                    </div>
+                  ) : null}
                 </div>
               </div>
             ) : null}

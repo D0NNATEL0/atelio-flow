@@ -122,6 +122,19 @@ export default function ClientsPage() {
   }, []);
 
   useEffect(() => {
+    function syncWorkspace() {
+      const storedDocuments = loadDocuments();
+      const storedClients = hydrateClients(loadClients(), storedDocuments);
+      setDocuments(storedDocuments);
+      setClients(storedClients);
+      setPendingExternalDocument(loadPendingExternalDocument());
+    }
+
+    window.addEventListener("atelio-workspace-updated", syncWorkspace);
+    return () => window.removeEventListener("atelio-workspace-updated", syncWorkspace);
+  }, []);
+
+  useEffect(() => {
     if (typeof window === "undefined" || !clients.length) return;
     const params = new URLSearchParams(window.location.search);
     const requestedClient = params.get("client");

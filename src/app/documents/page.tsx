@@ -148,6 +148,20 @@ export default function DocumentsPage() {
   }, []);
 
   useEffect(() => {
+    function syncWorkspace() {
+      const nextRows = loadDocuments();
+      setRows(nextRows);
+      const storedClients = loadClients();
+      if (storedClients[0]?.name) {
+        setSelectedClientName((current) => current || storedClients[0].name);
+      }
+    }
+
+    window.addEventListener("atelio-workspace-updated", syncWorkspace);
+    return () => window.removeEventListener("atelio-workspace-updated", syncWorkspace);
+  }, []);
+
+  useEffect(() => {
     saveDocuments(rows);
   }, [rows]);
 

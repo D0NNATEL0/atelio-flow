@@ -357,6 +357,13 @@
 .clientAccentamber { background: rgba(217, 154, 59, 0.14); color: var(--amber); }
 .clientAccentpink { background: rgba(188, 122, 146, 0.14); color: var(--pink); }
 
+.emptyState {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  padding: 10px 0 2px;
+}
+
 @media (max-width: 1024px) {
   .grid,
   .revenueSummaryRow {

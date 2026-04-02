@@ -72,14 +72,41 @@ function createPdfDocumentFromCanvas(canvas: HTMLCanvasElement) {
 }
 
 async function renderElementToPdfBlob(element: HTMLElement) {
+  await waitForExportFrame(element);
+
   const canvas = await html2canvas(element, {
     scale: Math.max(2, window.devicePixelRatio || 1),
     backgroundColor: "#ffffff",
-    useCORS: true
+    useCORS: true,
+    logging: false,
+    scrollX: 0,
+    scrollY: 0,
+    windowWidth: element.scrollWidth || element.clientWidth || 794,
+    windowHeight: element.scrollHeight || element.clientHeight || 1123
   });
 
   const pdf = createPdfDocumentFromCanvas(canvas);
   return pdf.output("blob");
+}
+
+async function waitForExportFrame(element: HTMLElement) {
+  await new Promise<void>((resolve) => window.requestAnimationFrame(() => resolve()));
+
+  const images = Array.from(element.querySelectorAll("img"));
+  await Promise.all(
+    images.map(
+      (image) =>
+        new Promise<void>((resolve) => {
+          if (image.complete) {
+            resolve();
+            return;
+          }
+
+          image.addEventListener("load", () => resolve(), { once: true });
+          image.addEventListener("error", () => resolve(), { once: true });
+        })
+    )
+  );
 }
 
 function downloadBlob(blob: Blob, fileName: string) {
@@ -337,10 +364,14 @@ function createExportMarkup(document: ExportDocument, account: ExportAccount) {
 function createTemporaryExportNode(markup: string) {
   const wrapper = document.createElement("div");
   wrapper.style.position = "fixed";
-  wrapper.style.left = "-99999px";
+  wrapper.style.left = "0";
   wrapper.style.top = "0";
+  wrapper.style.width = "820px";
+  wrapper.style.padding = "0";
+  wrapper.style.opacity = "0.01";
   wrapper.style.zIndex = "-1";
   wrapper.style.pointerEvents = "none";
+  wrapper.style.background = "#ffffff";
   wrapper.innerHTML = markup;
   document.body.appendChild(wrapper);
   return wrapper;

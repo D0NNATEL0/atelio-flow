@@ -21,6 +21,7 @@ export default function AccountPage() {
   const [resetPasswordModalOpen, setResetPasswordModalOpen] = useState(false);
   const [isSendingResetMail, setIsSendingResetMail] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   useEffect(() => {
     const nextAccount = loadAccount();
@@ -188,6 +189,26 @@ export default function AccountPage() {
         const supabase = getSupabaseBrowserClient();
         await supabase.auth.signOut();
       } catch {}
+    }
+
+    clearCurrentUserScope();
+    router.push("/auth/login");
+    router.refresh();
+  }
+
+  async function handleLogout() {
+    setSecurityMessage("");
+    setIsSigningOut(true);
+
+    try {
+      if (isSupabaseConfigured) {
+        const supabase = getSupabaseBrowserClient();
+        await supabase.auth.signOut();
+      }
+    } catch (error) {
+      setSecurityMessage(error instanceof Error ? error.message : "Impossible de se déconnecter pour le moment.");
+      setIsSigningOut(false);
+      return;
     }
 
     clearCurrentUserScope();
@@ -517,6 +538,9 @@ export default function AccountPage() {
               {securityMessage ? <span className={styles.message}>{securityMessage}</span> : null}
             </div>
             <div className={styles.securityButtons}>
+              <button className="button button-secondary" disabled={isSigningOut} onClick={() => void handleLogout()} type="button">
+                {isSigningOut ? "Déconnexion..." : "Déconnexion"}
+              </button>
               <button
                 className="button button-secondary"
                 onClick={() => {
